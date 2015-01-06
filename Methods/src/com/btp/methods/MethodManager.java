@@ -1,4 +1,4 @@
-package methods;
+package com.btp.methods;
 
 import java.util.Random;
 

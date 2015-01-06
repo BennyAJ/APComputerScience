@@ -1,6 +1,8 @@
-package romannumerals;
+package com.btp.strings;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputManager {
@@ -12,6 +14,17 @@ public class InputManager {
 			System.in.read(); //Waits for any input before moving on in console
 		} catch (IOException e) { //Stops program from crashing in case of I/O exception
 		}
+	}
+	
+	public static List<String> getListInput(String prompt, char endChar) {
+		List<String> inputList = new ArrayList<String>(); //Holds input
+		String tempString; //Holds user input before putting in list
+		tempString = getStringInput(prompt); //Gets user input
+		while(tempString.charAt(0) != endChar) { //Used to cancel input with /
+			inputList.add(tempString); //Adds input to list
+			tempString = getStringInput(prompt); //Gets user input
+		}
+		return inputList; //Returns a filled list of strings
 	}
 	
 	public static String getStringInput(String prompt) {

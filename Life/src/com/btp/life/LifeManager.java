@@ -1,4 +1,4 @@
-package Life;
+package com.btp.life;
 
 public class LifeManager {
 	public static void lifeTick(char[][] board, int boardSize) {
