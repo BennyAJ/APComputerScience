@@ -1,4 +1,4 @@
-package johnson.inheritance;
+package com.btp.inheritance;
 
 public abstract class Hitter implements Player {
 	private String firstName; //First name

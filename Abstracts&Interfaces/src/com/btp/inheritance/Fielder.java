@@ -1,4 +1,4 @@
-package johnson.inheritance;
+package com.btp.inheritance;
 
 public abstract class Fielder extends Hitter {
 	private String position; //Holds field position

@@ -1,4 +1,4 @@
-package johnson.inheritance;
+package com.btp.inheritance;
 
 public interface Player {
 	String getName(); //Returns first and last name

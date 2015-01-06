@@ -1,4 +1,4 @@
-package johnson.inheritance;
+package com.btp.inheritance;
 
 public class DesignatedHitter extends Hitter {
 	public DesignatedHitter() {

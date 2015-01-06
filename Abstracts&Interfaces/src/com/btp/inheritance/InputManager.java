@@ -1,4 +1,4 @@
-package johnson.inheritance;
+package com.btp.inheritance;
 
 import java.io.IOException;
 import java.util.Scanner;

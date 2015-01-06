@@ -1,4 +1,4 @@
-package johnson.inheritance;
+package com.btp.inheritance;
 
 public class Pitcher extends Fielder {
 	private int wins; //Wins
