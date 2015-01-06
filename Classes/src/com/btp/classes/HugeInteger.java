@@ -1,4 +1,4 @@
-package classes;
+package com.btp.classes;
 
 public class HugeInteger {
 	private int[] integers;

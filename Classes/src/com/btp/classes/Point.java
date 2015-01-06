@@ -1,4 +1,4 @@
-package classes;
+package com.btp.classes;
 
 public class Point {
 	private int x; //x coordinate

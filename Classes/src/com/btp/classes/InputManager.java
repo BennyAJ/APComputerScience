@@ -1,4 +1,4 @@
-package classes;
+package com.btp.classes;
 
 import java.io.IOException;
 import java.util.Scanner;

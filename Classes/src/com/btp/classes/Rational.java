@@ -1,4 +1,4 @@
-package classes;
+package com.btp.classes;
 
 public class Rational {
 	private int numerator;

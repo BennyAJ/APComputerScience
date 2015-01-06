@@ -1,4 +1,4 @@
-package classes;
+package com.btp.classes;
 
 import java.util.Random;
 
