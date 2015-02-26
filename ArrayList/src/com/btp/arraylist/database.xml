@@ -1,1 +1,20 @@
-<
+<people>
+	<person>
+		<firstname>jim</firstname>
+		<lastname>jimson</lastname>
+		<address>1111 cedar rd</address>
+		<phone>1114441111</phone>
+	</person>
+	<person>
+		<firstname>joe</firstname>
+		<lastname>jamson</lastname>
+		<address>1112 cedar rd</address>
+		<phone>1113331111</phone>
+	</person>
+	<person>
+		<firstname>jerry</firstname>
+		<lastname>jamson</lastname>
+		<address>1113 cedar rd</address>
+		<phone>1114441111</phone>
+	</person>
+</people>
