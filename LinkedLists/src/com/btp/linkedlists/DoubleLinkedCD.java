@@ -1,15 +1,15 @@
 package com.btp.linkedlists;
 
-public class LinkedCD extends LinkedNode {
+public class DoubleLinkedCD extends DoubleLinkedNode {
 	private String artist;
 	private String title;
 	
-	public LinkedCD() {
+	public DoubleLinkedCD() {
 		artist = "NA";
 		title = "NA";
 	}
 	
-	public LinkedCD(String artist, String title) {
+	public DoubleLinkedCD(String artist, String title) {
 		this.artist = artist;
 		this.title = title;
 	}
