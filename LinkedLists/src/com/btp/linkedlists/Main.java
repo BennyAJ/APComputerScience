@@ -16,10 +16,16 @@ public class Main {
 		
 		firstCD.printList();
 		firstCD.removeNodeFromList();
-		System.out.println("REMOVED CD FROM END");
+		System.out.println("\nREMOVED CD FROM END");
 		firstCD.printList();
+		
 		firstCD.addNodeToList(new LinkedCD("Bleachers", "Strange Desire"));
-		System.out.println("ADDED CD TO END");
+		System.out.println("\nADDED CD TO END");
+		firstCD.printList();
+		
+		tempCD = new LinkedCD("The Strokes", "Is This It");
+		firstCD.getNextNode().insertNodeAfter(tempCD);
+		System.out.println("\nINSERTED CD");
 		firstCD.printList();
 	}
 

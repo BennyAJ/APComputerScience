@@ -23,10 +23,21 @@ public abstract class LinkedNode {
 	}
 	
 	public void removeNodeFromList() {
+		LinkedNode prevNode = null;
 		LinkedNode tempNode = this;
-		while(tempNode.getNextNode().getNextNode() != null) //Run until reaching node without pointer
+		while(tempNode.getNextNode() != null) { //Run until reaching node without pointer
+			prevNode = tempNode;
 			tempNode = tempNode.getNextNode();
-		tempNode.setNextNode(null); //Add node to the end
+		}
+		if(prevNode != null)
+			prevNode.setNextNode(null); //Removes node from the end
+		else
+			System.err.println("Cannot delete while at the last element of the list"); //Look into this
+	}
+	
+	public void insertNodeAfter(LinkedNode afterNode) {
+		afterNode.setNextNode(this.getNextNode());
+		setNextNode(afterNode);
 	}
 	
 	public void printList() {

@@ -40,11 +40,39 @@ public abstract class DoubleLinkedNode {
 		tempNode.setNextNode(endNode); //Add node to the end
 	}
 	
+	public void addNodeToBeginning(DoubleLinkedNode startNode) {
+		DoubleLinkedNode tempNode = this;
+		while(tempNode.getPrevNode() != null) //Run until reaching node without pointer
+			tempNode = tempNode.getPrevNode();
+		tempNode.setPrevNode(startNode);
+		startNode.setNextNode(startNode); //Add node to the start
+	}
+	
 	public void removeNodeFromList() {
 		DoubleLinkedNode tempNode = this;
-		while(tempNode.getNextNode().getNextNode() != null) //Run until reaching node without pointer
+		while(tempNode.getNextNode() != null) { //Run until reaching node without pointer
 			tempNode = tempNode.getNextNode();
-		tempNode.setNextNode(null); //Add node to the end
+		}
+		tempNode.getPrevNode().setNextNode(null); //Removes current node
+	}
+	
+	public void removeNodeFromBeginning() {
+		DoubleLinkedNode tempNode = this;
+		while(tempNode.getPrevNode() != null) //Run until reaching node without pointer
+			tempNode = tempNode.getPrevNode();
+		tempNode.getNextNode().setPrevNode(null); //Removes reference to temp node
+	}
+	
+	public void insertNodeAfter(DoubleLinkedNode afterNode) {
+		afterNode.setNextNode(this.getNextNode());
+		afterNode.setPrevNode(this); //Adds afterNode between this element and the next
+		setNextNode(afterNode);
+	}
+	
+	public void insertNodeBefore(DoubleLinkedNode beforeNode) {
+		beforeNode.setNextNode(this); //Adds beforeNode between this element and the previous
+		beforeNode.setPrevNode(this.getPrevNode());
+		setPrevNode(beforeNode);
 	}
 	
 	public void printList(boolean reversed) {
