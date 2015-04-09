@@ -33,11 +33,26 @@ public abstract class DoubleLinkedNode {
 		return prevNode;
 	}
 	
+	public DoubleLinkedNode getLastNode() {
+		DoubleLinkedNode tempNode = this;
+		while(tempNode.getNextNode() != null) //Run until reaching node without pointer
+			tempNode = tempNode.getNextNode();
+		return tempNode;
+	}
+	
+	public DoubleLinkedNode getFirstNode() {
+		DoubleLinkedNode tempNode = this;
+		while(tempNode.getPrevNode() != null) //Run until reaching node without pointer
+			tempNode = tempNode.getPrevNode();
+		return tempNode;
+	}
+	
 	public void addNodeToList(DoubleLinkedNode endNode) {
 		DoubleLinkedNode tempNode = this;
 		while(tempNode.getNextNode() != null) //Run until reaching node without pointer
 			tempNode = tempNode.getNextNode();
 		tempNode.setNextNode(endNode); //Add node to the end
+		endNode.setPrevNode(tempNode);
 	}
 	
 	public void addNodeToBeginning(DoubleLinkedNode startNode) {
@@ -45,14 +60,13 @@ public abstract class DoubleLinkedNode {
 		while(tempNode.getPrevNode() != null) //Run until reaching node without pointer
 			tempNode = tempNode.getPrevNode();
 		tempNode.setPrevNode(startNode);
-		startNode.setNextNode(startNode); //Add node to the start
+		startNode.setNextNode(tempNode); //Add node to the start
 	}
 	
 	public void removeNodeFromList() {
 		DoubleLinkedNode tempNode = this;
-		while(tempNode.getNextNode() != null) { //Run until reaching node without pointer
+		while(tempNode.getNextNode() != null) //Run until reaching node without pointer
 			tempNode = tempNode.getNextNode();
-		}
 		tempNode.getPrevNode().setNextNode(null); //Removes current node
 	}
 	
@@ -70,8 +84,11 @@ public abstract class DoubleLinkedNode {
 	}
 	
 	public void insertNodeBefore(DoubleLinkedNode beforeNode) {
+		if(getPrevNode() != null) {
+			getPrevNode().setNextNode(beforeNode);
+		}
 		beforeNode.setNextNode(this); //Adds beforeNode between this element and the previous
-		beforeNode.setPrevNode(this.getPrevNode());
+		beforeNode.setPrevNode(getPrevNode());
 		setPrevNode(beforeNode);
 	}
 	
