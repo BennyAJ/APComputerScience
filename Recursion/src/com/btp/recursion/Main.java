@@ -11,7 +11,7 @@ public class Main {
 		tempArray[4] = 'y';
 		System.out.println(StringReverser.reverseBounds(tempArray, 0, 4));*/
 		
-		System.out.println(BinaryConverter.binaryToInteger(11010, 0));
+		System.out.println(NumberAnalyzer.getSquare(736));
 	}
 
 }
