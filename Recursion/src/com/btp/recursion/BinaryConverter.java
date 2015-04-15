@@ -10,13 +10,13 @@ public class BinaryConverter {
 	
 	public static String integerToBinary(int number) {
 		if(number > 0) {
-			if(number % 2 == 0)
+			if(number % 2 == 0) //If number is even add a 0 and divide by 2
 				return integerToBinary(number/2) + "0";
-			else
+			else //If number is odd add a 1 and divide by 2
 				return integerToBinary(number/2) + "1";
 		}
 		else {
-			return "";
+			return ""; //Add nothing when number is 0
 		}
 		
 		

@@ -14,4 +14,13 @@ public class StringReverser {
 			return text;
 		}
 	}
+	
+	public static boolean isPalindrome(String text) {
+		if(text.length() <= 1)
+			return true; //If it gets to the end without returning false it is a palindrome
+		else if(text.charAt(0) != text.charAt(text.length() - 1))
+			return false; //Return false if any letter can't be reversed
+		else //Remove one character from each side and restart
+			return isPalindrome(text.substring(1, text.length() - 1));
+	}
 }
