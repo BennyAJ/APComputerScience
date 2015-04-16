@@ -37,7 +37,7 @@ public abstract class LinkedNode {
 	
 	public void insertNodeAfter(LinkedNode afterNode) {
 		afterNode.setNextNode(this.getNextNode());
-		setNextNode(afterNode);
+		setNextNode(afterNode); //Puts afterNode after this node
 	}
 	
 	public void printList() {

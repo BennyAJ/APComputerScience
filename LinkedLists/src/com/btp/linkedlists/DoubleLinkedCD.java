@@ -62,16 +62,6 @@ public class DoubleLinkedCD extends DoubleLinkedNode {
 			tempNode.insertNodeAfter(artistNode);
 	}
 	
-	public void swapInfo(DoubleLinkedCD swapCD) {
-		String tempString = swapCD.getArtist(); //Saves swap CD's artist
-		swapCD.setArtist(this.getArtist()); //Moves this artist to swap CD
-		setArtist(tempString); //Move swap CD's artist to this
-		
-		tempString = swapCD.getTitle(); //Save swap CD's title
-		swapCD.setTitle(this.getTitle()); //Move this title to swap CD
-		setTitle(tempString); //Move swap CD's artist to this
-	}
-	
 	@Override
 	public void printInfo() {
 		System.out.println(title + " by " + artist);

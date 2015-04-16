@@ -30,4 +30,23 @@ public class NumberAnalyzer {
 		else
 			return array[index] + getSum(array, index + 1); //Add next entry to sum
 	}
+	
+	public static float getSqrt(float number, float estimate) {
+		float quotient = number/estimate;
+		if(Math.abs(estimate - quotient) > .005) //Run again until estimate is close enough
+			return getSqrt(number, (estimate + quotient)/2);
+		else
+			return estimate; //Return final estimate when it is close enough
+	}
+	
+	public static double getFactorial(int number) {
+		if(number > 1) //Multiply by each number until reaching 1
+			return number * getFactorial(number - 1);
+		else
+			return 1; //End recursion by multiplying by 1 instead of recalling function
+	}
+	
+	public static int getPermutations(int n, int r) {
+		return (int) (getFactorial(n)/getFactorial(n - r)); // n!/(n-r)!
+	}
 }

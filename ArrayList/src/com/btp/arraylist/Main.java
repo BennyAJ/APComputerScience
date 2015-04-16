@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 		String input = "";
 		boolean looping = true;
-		Rolodex rolodex = new Rolodex();
+		Rolodex rolodex = new Rolodex(); //Create rolodex
 		PersonXMLReader xml = new PersonXMLReader();
 		ArrayList<Integer> searchIndexes;
 		String firstName, lastName, phoneNum;
@@ -28,6 +28,7 @@ public class Main {
 			rolodex.displayPerson();
 			System.out.println("Input a number to go to that index within the rolodex");
 			System.out.println("Type search to search for a specific entry");
+			System.out.println("Type end to exit the rolodex");
 			input = InputManager.getStringInput("Input a + or - to move forward or back in the rolodex");
 			if(input.equals("+")) {
 				rolodex.moveForwards();
@@ -50,9 +51,12 @@ public class Main {
 				}
 				firstName = lastName = phoneNum = null;
 			}
+			else if(input.equals("end")) {
+				looping = false; //End loop
+			}
 			else {
 				try {
-					rolodex.toIndex(Integer.parseInt(input));
+					rolodex.toIndex(Integer.parseInt(input)); //Convert string to int
 				}
 				catch(Exception e) {
 					//If string can't be parsed into an int then nothing happens
