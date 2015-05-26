@@ -41,8 +41,9 @@ public class Main {
 		System.out.println("Max Customers = " + maxCustomers);
 		System.out.println("Max Wait Time = " + maxWait);
 		
-		/*System.out.println("6 + 2 / 2 + 9 / 3 - 4 * 4"); //Test for stack arithmetic
-		System.out.println("RESULT = " + StackManager.evaluate("6 + 2 / 2 + 9 / 3 - 4 * 4"));*/
+		System.out.println();
+		System.out.println("6 + 2 / 2 + 9 / 3 - 4 * 4"); //Test for stack arithmetic
+		System.out.println("RESULT = " + StackManager.evaluate("6 + 2 / 2 + 9 / 3 - 4 * 4"));
 	}
 
 }
