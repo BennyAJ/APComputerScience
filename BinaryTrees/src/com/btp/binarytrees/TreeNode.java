@@ -102,6 +102,11 @@ public class TreeNode implements Comparable<TreeNode> {
 	
 	public static void removeNode(TreeNode current, Comparable value) {
 		TreeNode tempNode = search(current, value);
+		System.out.println("Temp Node = " + tempNode.getValue());
+		if(tempNode.getLeft() != null)
+			System.out.println("Temp Node Left = " + tempNode.getLeft().getValue());
+		if(tempNode.getRight() != null)
+			System.out.println("Temp Node Right = " + tempNode.getRight().getValue());
 		TreeNode parentNode = tempNode.getParent(); //Save parent node separately for neatness
 		if(tempNode.isLeaf()) {
 			if(parentNode.getLeft() == tempNode) //If node is on left
@@ -111,16 +116,26 @@ public class TreeNode implements Comparable<TreeNode> {
 		}
 		else if(tempNode.getLeft() != null && tempNode.getRight() != null) {
 			TreeNode largestNode = getLargestNode(tempNode.getLeft());
+			System.out.println("Largest Node = " + largestNode.getValue());
 			tempNode.setValue(largestNode.getValue()); //Move largest node's value to the node being deleted
 			getLargestNode(tempNode.getLeft()).getParent().setRight(null);
 		}
 		else if(tempNode.getLeft() == null) { //If only right exists
+			System.out.println("Lone Right Node = " + tempNode.getRight().getValue());
 			tempNode.setValue(tempNode.getRight().getValue());
-			removeNode(tempNode, tempNode.getRight().getValue()); //Move the right node up
+			System.out.println("Node after val change = " + tempNode.getValue());
+			tempNode.setLeft(tempNode.getRight().getLeft());
+			tempNode.setRight(tempNode.getRight().getRight());
+			tempNode.setRight(null);
 		}
 		else if(tempNode.getRight() == null) {
+			System.out.println("Lone Left Node = " + tempNode.getRight().getValue());
 			tempNode.setValue(tempNode.getLeft().getValue());
-			removeNode(tempNode, tempNode.getLeft().getValue());
+			tempNode.setLeft(tempNode.getLeft().getLeft());
+			tempNode.setRight(tempNode.getLeft().getRight());
+			System.out.println("PRINTING FROM TEMP NODE");
+			printInOrder(tempNode);
+			tempNode.setLeft(null);
 		}
 	}
 	
