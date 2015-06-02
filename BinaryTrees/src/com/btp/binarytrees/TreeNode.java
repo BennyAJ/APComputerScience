@@ -88,54 +88,39 @@ public class TreeNode implements Comparable<TreeNode> {
 		}
 	}
 	
-	public static TreeNode getLargestNode(TreeNode current) {
-		if(current.getRight() != null) //Finds largest value in subtree
-			getLargestNode(current.getRight());
+	public static TreeNode getTreeMinVal(TreeNode current) {
+		if(current.getLeft() != null) { //Find minimum value in the subtree
+			getTreeMinVal(current.getLeft());
+		}
 		return current;
 	}
 	
-	public static TreeNode getSmallestNode(TreeNode current) {
-		if(current.getLeft() != null) //Finds smallest value in subtree
-			getSmallestNode(current.getLeft());
-		return current;
-	}
-	
-	public static void removeNode(TreeNode current, Comparable value) {
-		TreeNode tempNode = search(current, value);
-		System.out.println("Temp Node = " + tempNode.getValue());
-		if(tempNode.getLeft() != null)
-			System.out.println("Temp Node Left = " + tempNode.getLeft().getValue());
-		if(tempNode.getRight() != null)
-			System.out.println("Temp Node Right = " + tempNode.getRight().getValue());
-		TreeNode parentNode = tempNode.getParent(); //Save parent node separately for neatness
-		if(tempNode.isLeaf()) {
-			if(parentNode.getLeft() == tempNode) //If node is on left
+	public static void removeNode(TreeNode startNode, Comparable value) {
+		TreeNode current = search(startNode, value);
+		TreeNode parentNode = current.getParent(); //Save parent node separately for neatness
+		if(current.isLeaf()) { //If the node is a leaf, delete it
+			if(parentNode.getLeft() == current)
 				parentNode.setLeft(null);
 			else
 				parentNode.setRight(null);
 		}
-		else if(tempNode.getLeft() != null && tempNode.getRight() != null) {
-			TreeNode largestNode = getLargestNode(tempNode.getLeft());
-			System.out.println("Largest Node = " + largestNode.getValue());
-			tempNode.setValue(largestNode.getValue()); //Move largest node's value to the node being deleted
-			getLargestNode(tempNode.getLeft()).getParent().setRight(null);
+		
+		else if(current.getLeft() != null && current.getRight() != null) {
+			TreeNode tempNode = getTreeMinVal(current.getRight()); 
+			current.setValue(tempNode.getValue());
+			removeNode(current.getRight(), tempNode.getValue()); //Removes old node after moving value
 		}
-		else if(tempNode.getLeft() == null) { //If only right exists
-			System.out.println("Lone Right Node = " + tempNode.getRight().getValue());
-			tempNode.setValue(tempNode.getRight().getValue());
-			System.out.println("Node after val change = " + tempNode.getValue());
-			tempNode.setLeft(tempNode.getRight().getLeft());
-			tempNode.setRight(tempNode.getRight().getRight());
-			tempNode.setRight(null);
+		
+		else if(current.getLeft() != null){
+			current.setValue(current.getLeft().getValue());
+			current.setRight(current.getLeft().getRight());
+			current.setLeft(current.getLeft().getLeft());
 		}
-		else if(tempNode.getRight() == null) {
-			System.out.println("Lone Left Node = " + tempNode.getRight().getValue());
-			tempNode.setValue(tempNode.getLeft().getValue());
-			tempNode.setLeft(tempNode.getLeft().getLeft());
-			tempNode.setRight(tempNode.getLeft().getRight());
-			System.out.println("PRINTING FROM TEMP NODE");
-			printInOrder(tempNode);
-			tempNode.setLeft(null);
+		
+		else if(current.getRight() != null) {
+			current.setValue(current.getRight().getValue());
+			current.setRight(current.getRight().getRight());
+			current.setLeft(current.getRight().getLeft());
 		}
 	}
 	

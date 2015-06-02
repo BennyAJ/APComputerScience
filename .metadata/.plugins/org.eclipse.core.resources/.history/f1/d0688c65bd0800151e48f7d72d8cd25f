@@ -1,0 +1,178 @@
+package com.btp.binarytrees;
+
+public class TreeNode implements Comparable<TreeNode> {
+	private Comparable value;
+	private TreeNode parent;
+	private TreeNode left;
+	private TreeNode right;
+	
+	public TreeNode() {
+		value = null;
+		left = null;
+		right = null;
+	}
+	
+	public TreeNode(Comparable value) {
+		this.value = value;
+		left = null;
+		right = null;
+	}
+	
+	public Comparable getValue() {
+		return value;
+	}
+	
+	public TreeNode getLeft() {
+		return left;
+	}
+	
+	public TreeNode getRight() {
+		return right;
+	}
+	
+	public TreeNode getParent() {
+		return parent;
+	}
+	
+	public void setValue(Comparable value) {
+		this.value = value;
+	}
+	
+	public void setRight(TreeNode right) {
+		this.right = right;
+		if(right != null)
+			right.setParent(this);
+	}
+	
+	public void setLeft(TreeNode left) {
+		this.left = left;
+		if(left != null)
+			left.setParent(this);
+	}
+	
+	public void setParent(TreeNode parent) {
+		this.parent = parent;
+	}
+	
+	public boolean isLeaf() {
+		if(left == null && right == null)
+			return true;
+		return false;
+	}
+	
+	@Override
+	public int compareTo(TreeNode node) {
+		if(value.compareTo(node.getValue()) < 0)
+			return -1; //Returns num with same sign as the compareTo of the values of the nodes
+		else if(value.compareTo(node.getValue()) > 0)
+			return 1;
+		else
+			return 0;
+	}
+	
+	public static void addNode(TreeNode current, TreeNode node) {
+		if(current == null) {
+			current = node;
+		}
+		else if(node.compareTo(current) < 0) {
+			if(current.getLeft() == null)
+				current.setLeft(node);
+			else
+				addNode(current.getLeft(), node);
+		}
+		else if(node.compareTo(current) > 0) {
+			if(current.getRight() == null)
+				current.setRight(node);
+			else
+				addNode(current.getRight(), node);
+		}
+	}
+	
+	public static TreeNode getLargestNode(TreeNode current) {
+		if(current.getRight() != null) { //Finds largest value in subtree
+			System.out.println("LARGEST NODE SEARCH: " + current.getValue());
+			getLargestNode(current.getRight());
+		}
+		return current;
+	}
+	
+	public static TreeNode getSmallestNode(TreeNode current) {
+		if(current.getLeft() != null) //Finds smallest value in subtree
+			getSmallestNode(current.getLeft());
+		return current;
+	}
+	
+	public static void removeNode(TreeNode current, Comparable value) {
+		TreeNode tempNode = search(current, value);
+		System.out.println("Temp Node = " + tempNode.getValue());
+		if(tempNode.getLeft() != null)
+			System.out.println("Temp Node Left = " + tempNode.getLeft().getValue());
+		if(tempNode.getRight() != null)
+			System.out.println("Temp Node Right = " + tempNode.getRight().getValue());
+		TreeNode parentNode = tempNode.getParent(); //Save parent node separately for neatness
+		if(tempNode.isLeaf()) {
+			if(parentNode.getLeft() == tempNode) //If node is on left
+				parentNode.setLeft(null);
+			else
+				parentNode.setRight(null);
+		}
+		else if(tempNode.getLeft() != null && tempNode.getRight() != null) {
+			TreeNode largestNode = getLargestNode(tempNode.getLeft());
+			System.out.println("Largest Node = " + largestNode.getValue());
+			tempNode.setValue(largestNode.getValue()); //Move largest node's value to the node being deleted
+			getLargestNode(tempNode.getLeft()).getParent().setRight(null);
+		}
+		else if(tempNode.getLeft() == null) { //If only right exists
+			System.out.println("Lone Right Node = " + tempNode.getRight().getValue());
+			tempNode.setValue(tempNode.getRight().getValue());
+			System.out.println("Node after val change = " + tempNode.getValue());
+			tempNode.setLeft(tempNode.getRight().getLeft());
+			tempNode.setRight(tempNode.getRight().getRight());
+			tempNode.setRight(null);
+		}
+		else if(tempNode.getRight() == null) {
+			System.out.println("Lone Left Node = " + tempNode.getRight().getValue());
+			tempNode.setValue(tempNode.getLeft().getValue());
+			tempNode.setLeft(tempNode.getLeft().getLeft());
+			tempNode.setRight(tempNode.getLeft().getRight());
+			System.out.println("PRINTING FROM TEMP NODE");
+			printInOrder(tempNode);
+			tempNode.setLeft(null);
+		}
+	}
+	
+	public static TreeNode search(TreeNode current, Comparable obj) {
+		if(current == null) {
+			return current;
+		}
+		else if(obj.compareTo(current.getValue()) < 0) {
+			return search(current.getLeft(), obj);
+		}
+		else if(obj.compareTo(current.getValue()) > 0) {
+			return search(current.getRight(), obj);
+		}
+		return current;
+	}
+	
+	public static void printInOrder(TreeNode current) {
+		if(current != null) {
+			printInOrder(current.getLeft());
+			System.out.println(" " + current.getValue());
+			printInOrder(current.getRight());
+		}
+	}
+	public static void printPreOrder(TreeNode current) {
+		if(current != null) {
+			System.out.println(" " + current.getValue());
+			printPreOrder(current.getLeft());
+			printPreOrder(current.getRight());
+		}
+	}
+	public static void printPostOrder(TreeNode current) {
+		if(current != null) {
+			printPostOrder(current.getLeft());
+			printPostOrder(current.getRight());
+			System.out.println(" " + current.getValue());
+		}
+	}
+}

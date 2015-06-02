@@ -3,7 +3,8 @@ package com.btp.binarytrees;
 public class Main {
 
 	public static void main(String[] args) {
-		TreeNode startNode = new TreeNode(new Integer(5));
+		int removedNum = 9;
+		TreeNode startNode = new TreeNode(new Integer(7));
 		for(int i = 1; i < 4; i += 1) {
 			TreeNode.addNode(startNode, new TreeNode(new Integer(i)));
 			System.out.println("Added " + i);
@@ -14,21 +15,13 @@ public class Main {
 			TreeNode.addNode(startNode, new TreeNode(new Integer(i)));
 			System.out.println("Added " + i);
 		}
-		//TreeNode.printInOrder(startNode);
 		
-		System.out.println("Start Node = " + startNode.getValue());
-		System.out.println("Start Node Left = " + startNode.getLeft().getValue());
-		System.out.println("Start Node Right = " + startNode.getRight().getValue());
-		System.out.println("Start Node Left Right = " + startNode.getLeft().getRight().getValue());
-		
-		TreeNode.removeNode(startNode, new Integer(1));
-		System.out.println("REMOVED 1");
 		TreeNode.printInOrder(startNode);
 		
-		System.out.println("Start Node = " + startNode.getValue());
-		System.out.println("Start Node Left = " + startNode.getLeft().getValue());
-		//System.out.println("Start Node Right = " + startNode.getRight().getValue());
-		//System.out.println("Start Node Left Right = " + startNode.getLeft().getRight().getValue());
+		TreeNode.removeNode(startNode, new Integer(removedNum));
+		System.out.println("REMOVED " + removedNum);
+		
+		TreeNode.printInOrder(startNode);
 	}
 
 }
